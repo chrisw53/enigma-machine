@@ -30,9 +30,9 @@ public class Plugboard {
     }
 
     void showPlugs() {
-        System.out.println("\nThe current plugs are ");
+        System.out.println("====== Current Plugs ======");
         for (Plug myPlug : plugsList) {
-            System.out.println(myPlug.getEnd1() + ", " + myPlug.getEnd2());
+            System.out.println(myPlug.getEnd1() + "-" + myPlug.getEnd2());
         }
         System.out.println();
     }

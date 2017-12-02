@@ -3,28 +3,27 @@ public class EnigmaMachine {
     private BasicRotor rotorList[] = new BasicRotor[3];
     private Reflector myReflector;
 
-    EnigmaMachine() {
-        myPlugboard = new Plugboard();
-    }
+    EnigmaMachine() { myPlugboard = new Plugboard(); }
 
-    void clearPlugboard() {
-        myPlugboard.clear();
-    }
+    void clearPlugboard() { myPlugboard.clear(); }
 
-    void addRotor(BasicRotor rotor, int slot) {
-        rotorList[slot] = rotor;
-    }
+    void addRotor(BasicRotor rotor, int slot) { rotorList[slot] = rotor; }
 
-    void addReflector(Reflector myReflector) {
-        this.myReflector = myReflector;
-    }
+    void addReflector(Reflector myReflector) { this.myReflector = myReflector; }
 
-    public Reflector getReflector() {
-        return myReflector;
-    }
+    Reflector getReflector() { return myReflector; }
 
-    public void setPosition(int slot, int position) {
-        rotorList[slot].position = position;
+    BasicRotor getRotor(int index) { return rotorList[index]; }
+
+    void setPosition(int slot, int position) { rotorList[slot].position = position; }
+
+    void showRotors() {
+        System.out.println("====== Current Rotors ======");
+        for (int i = 0; i < rotorList.length; i++) {
+            System.out.println("Rotor " + (i + 1) + ": ");
+            System.out.println("Type: " + rotorList[i].name);
+            System.out.println("Initial Position: " + rotorList[i].position + "\n");
+        }
     }
 
     char encodeLetter(char initInput) {

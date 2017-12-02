@@ -52,6 +52,7 @@ public class BasicRotor extends Rotor {
     }
 
     void initialise(String name) {
+        this.name = name;
         switch (name.toUpperCase()) {
             case "I":
                 this.mapping = MAPPING1;

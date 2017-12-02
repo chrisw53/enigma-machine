@@ -26,6 +26,8 @@ public class TurnoverRotor extends BasicRotor {
         this.setNextRotor(nextRotor);
     }
 
+    TurnoverRotor getNextRotor() { return this.nextRotor; }
+
     void setNextRotor(TurnoverRotor nextRotor) { this.nextRotor = nextRotor; }
 
     void rotateTurnover() {
