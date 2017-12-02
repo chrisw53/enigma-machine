@@ -3,8 +3,8 @@ public class Plug {
     private char end2;
 
     Plug(char end1, char end2) {
-        this.end1 = end1;
-        this.end2 = end2;
+        setEnd1(end1);
+        setEnd2(end2);
     }
 
     char getEnd1() { return this.end1; }

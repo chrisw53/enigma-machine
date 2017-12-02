@@ -5,15 +5,20 @@ public class Plugboard {
 
     boolean addPlug(char end1, char end2) {
         Plug myPlug = new Plug(end1, end2);
+        Boolean plugClash = false;
 
         for(Plug plug : plugsList) {
             if (plug.clashesWith(myPlug)) {
-                return false;
+                plugClash = true;
             }
         }
 
-        plugsList.add(myPlug);
-        return true;
+        if (!plugClash) {
+            plugsList.add(myPlug);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public int getNumPlugs() {
@@ -22,6 +27,14 @@ public class Plugboard {
 
     void clear() {
         plugsList.clear();
+    }
+
+    void showPlugs() {
+        System.out.println("\nThe current plugs are ");
+        for (Plug myPlug : plugsList) {
+            System.out.println(myPlug.getEnd1() + ", " + myPlug.getEnd2());
+        }
+        System.out.println();
     }
 
     char substitute(char input) {
