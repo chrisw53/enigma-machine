@@ -19,10 +19,14 @@ public class TestHarness extends EnigmaMachine {
         addReflector(myReflector);
 
         char charArray[] = msg.toCharArray();
+        StringBuilder output = new StringBuilder("");
 
         for(char letter: charArray) {
-            System.out.print(encodeLetter(letter));
+            output.append(encodeLetter(letter));
         }
+
+        System.out.println(output);
+
         clearPlugboard();
     }
 
@@ -47,10 +51,14 @@ public class TestHarness extends EnigmaMachine {
         addReflector(myReflector);
 
         char charArray[] = msg.toCharArray();
+        StringBuilder output = new StringBuilder("");
 
         for(char letter: charArray) {
-            System.out.print(encodeLetter(letter));
+            output.append(encodeLetter(letter));
         }
+
+        System.out.println(output);
+
         clearPlugboard();
     }
 
@@ -73,21 +81,22 @@ public class TestHarness extends EnigmaMachine {
         addReflector(myReflector);
 
         char charArray[] = msg.toCharArray();
+        StringBuilder output = new StringBuilder("");
 
         for(char letter: charArray) {
-            System.out.print(encodeLetter(letter));
+            output.append(encodeLetter(letter));
 
             rotor1.rotateTurnover();
         }
+
+        System.out.println(output);
     }
 
     public static void main(String[] args) {
         TestHarness myTestHarness = new TestHarness();
 
         myTestHarness.test1("GFWIQH");
-        System.out.println();
         myTestHarness.test2("GACIG");
-        System.out.println();
         myTestHarness.test3("OJVAYFGUOFIVOTAYRNIWJYQWMXUEJGXYGIFT");
     }
 }

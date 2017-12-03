@@ -2,18 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a5a08483-4ac9-4d8d-971f-66fdf586c886" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/Test.java" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/out/production/enigma_machine/CommandLineApp.class" afterPath="$PROJECT_DIR$/out/production/enigma_machine/CommandLineApp.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/enigma_machine/EnigmaMachine.class" afterPath="$PROJECT_DIR$/out/production/enigma_machine/EnigmaMachine.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/enigma_machine/Plugboard.class" afterPath="$PROJECT_DIR$/out/production/enigma_machine/Plugboard.class" />
-      <change beforePath="$PROJECT_DIR$/src/BasicRotor.java" afterPath="$PROJECT_DIR$/src/BasicRotor.java" />
       <change beforePath="$PROJECT_DIR$/src/CommandLineApp.java" afterPath="$PROJECT_DIR$/src/CommandLineApp.java" />
-      <change beforePath="$PROJECT_DIR$/src/EnigmaMachine.java" afterPath="$PROJECT_DIR$/src/EnigmaMachine.java" />
-      <change beforePath="$PROJECT_DIR$/src/Plugboard.java" afterPath="$PROJECT_DIR$/src/Plugboard.java" />
-      <change beforePath="$PROJECT_DIR$/src/Reflector.java" afterPath="$PROJECT_DIR$/src/Reflector.java" />
-      <change beforePath="$PROJECT_DIR$/src/TurnoverRotor.java" afterPath="$PROJECT_DIR$/src/TurnoverRotor.java" />
+      <change beforePath="$PROJECT_DIR$/src/TestHarness.java" afterPath="$PROJECT_DIR$/src/TestHarness.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,6 +16,9 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/enigma_machine$Bombe.coverage" NAME="Bombe Coverage Results" MODIFIED="1510509815931" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="enigma_machine" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
@@ -46,8 +40,18 @@
       <file leaf-file-name="TestHarness.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/TestHarness.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-142">
-              <caret line="32" column="38" lean-forward="true" selection-start-line="32" selection-start-column="38" selection-end-line="32" selection-end-column="38" />
+            <state relative-caret-position="484">
+              <caret line="91" column="35" lean-forward="false" selection-start-line="91" selection-start-column="35" selection-end-line="91" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Reflector.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Reflector.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="76">
+              <caret line="4" column="36" lean-forward="false" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -56,12 +60,10 @@
       <file leaf-file-name="CommandLineApp.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/CommandLineApp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="654">
-              <caret line="354" column="8" lean-forward="false" selection-start-line="354" selection-start-column="8" selection-end-line="354" selection-end-column="8" />
+            <state relative-caret-position="-4620">
+              <caret line="59" column="19" lean-forward="true" selection-start-line="59" selection-start-column="19" selection-end-line="59" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#12034#12035#0" expanded="true" />
-                <element signature="e#12079#12080#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -80,18 +82,8 @@
       <file leaf-file-name="EnigmaMachine.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/EnigmaMachine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
+            <state relative-caret-position="154">
               <caret line="15" column="63" lean-forward="true" selection-start-line="15" selection-start-column="63" selection-end-line="15" selection-end-column="63" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TurnoverRotor.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/TurnoverRotor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="498">
-              <caret line="28" column="57" lean-forward="false" selection-start-line="28" selection-start-column="57" selection-end-line="28" selection-end-column="57" />
               <folding />
             </state>
           </provider>
@@ -124,6 +116,7 @@
       <find>inputMinusPosition</find>
       <find>this.mapping</find>
       <find>rotorType</find>
+      <find>encode</find>
     </findStrings>
     <replaceStrings>
       <replace>(input - this.position)</replace>
@@ -150,7 +143,6 @@
         <option value="$PROJECT_DIR$/src/Bombe.java" />
         <option value="$PROJECT_DIR$/README.MD" />
         <option value="$PROJECT_DIR$/src/Toolbox.java" />
-        <option value="$PROJECT_DIR$/src/TestHarness.java" />
         <option value="$PROJECT_DIR$/src/Plug.java" />
         <option value="$PROJECT_DIR$/src/Plugboard.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
@@ -159,6 +151,7 @@
         <option value="$PROJECT_DIR$/src/TurnoverRotor.java" />
         <option value="$PROJECT_DIR$/src/Test.java" />
         <option value="$PROJECT_DIR$/src/Reflector.java" />
+        <option value="$PROJECT_DIR$/src/TestHarness.java" />
         <option value="$PROJECT_DIR$/src/CommandLineApp.java" />
       </list>
     </option>
@@ -170,7 +163,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="y" value="662" />
+    <option name="y" value="22" />
     <option name="width" value="1280" />
     <option name="height" value="778" />
   </component>
@@ -394,8 +387,8 @@
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Application.CommandLineApp" />
-        <item index="1" class="java.lang.String" itemvalue="Application.Test" />
-        <item index="2" class="java.lang.String" itemvalue="Application.TestHarness" />
+        <item index="1" class="java.lang.String" itemvalue="Application.TestHarness" />
+        <item index="2" class="java.lang.String" itemvalue="Application.Test" />
         <item index="3" class="java.lang.String" itemvalue="Application.Bombe" />
         <item index="4" class="java.lang.String" itemvalue="Application.EnigmaMachine" />
       </list>
@@ -439,15 +432,15 @@
       <workItem from="1512059860166" duration="212000" />
       <workItem from="1512060196217" duration="32000" />
       <workItem from="1512060266161" duration="587000" />
-      <workItem from="1512147157486" duration="17877000" />
+      <workItem from="1512147157486" duration="22132000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75525000" />
+    <option name="totallyTimeSpent" value="79780000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="2560" height="1418" extended-state="6" />
+    <frame x="0" y="22" width="1280" height="778" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -459,17 +452,17 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21099554" sideWeight="0.5046875" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21099554" sideWeight="0.4953125" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21693908" sideWeight="0.49140626" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34135976" sideWeight="0.4953125" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21671388" sideWeight="0.49140626" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.08359375" sideWeight="0.5" order="5" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1671875" sideWeight="0.49323016" order="5" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1671875" sideWeight="0.50676984" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39943343" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -875,22 +868,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/TestHarness.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-142">
-          <caret line="32" column="38" lean-forward="true" selection-start-line="32" selection-start-column="38" selection-end-line="32" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/EnigmaMachine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="15" column="63" lean-forward="true" selection-start-line="15" selection-start-column="63" selection-end-line="15" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/BasicRotor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1026">
@@ -907,14 +884,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/EnigmaMachine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="15" column="63" lean-forward="true" selection-start-line="15" selection-start-column="63" selection-end-line="15" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TestHarness.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="91" column="35" lean-forward="false" selection-start-line="91" selection-start-column="35" selection-end-line="91" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/CommandLineApp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="654">
-          <caret line="354" column="8" lean-forward="false" selection-start-line="354" selection-start-column="8" selection-end-line="354" selection-end-column="8" />
+        <state relative-caret-position="-4620">
+          <caret line="59" column="19" lean-forward="true" selection-start-line="59" selection-start-column="19" selection-end-line="59" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#12034#12035#0" expanded="true" />
-            <element signature="e#12079#12080#0" expanded="true" />
           </folding>
         </state>
       </provider>

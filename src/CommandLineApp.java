@@ -4,7 +4,7 @@ import java.util.function.Function;
 public class CommandLineApp extends EnigmaMachine {
     private Scanner userInput = new Scanner(System.in);
 
-    Integer intValidation(String input, Runnable callback) {
+    protected Integer intValidation(String input, Runnable callback) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
@@ -15,7 +15,7 @@ public class CommandLineApp extends EnigmaMachine {
         return 0;
     }
 
-    char charValidation(String input, Runnable callback) {
+    protected char charValidation(String input, Runnable callback) {
         char output = 'A';
 
         if (input.length() > 0) {
@@ -35,13 +35,14 @@ public class CommandLineApp extends EnigmaMachine {
         return 'A';
     }
 
-    void init() {
+    protected void init() {
         System.out.println("====== Main Menu ======");
         System.out.println("[1] Quick Start");
         System.out.println("[2] Add Plugs");
         System.out.println("[3] Add Rotors");
         System.out.println("[4] Add Reflector");
         System.out.println("[5] Run");
+        System.out.println("[6] Exit");
 
         switch (intValidation(userInput.nextLine(), this::init)) {
             case 1:
@@ -57,8 +58,15 @@ public class CommandLineApp extends EnigmaMachine {
                 reflectorInit();
                 break;
             case 5:
-                encode();
+                if (getReflector() != null && getRotor(0) != null) {
+                    encodeInit();
+                } else {
+                    System.err.println("\n[FAIL] Make sure you have added a reflector and the rotors before encoding\n");
+                    reflectorInit();
+                }
                 break;
+            case 6:
+                System.exit(0);
             default:
                 System.err.println("[FAIL] Please enter a number from 1 - 5");
                 init();
@@ -66,7 +74,7 @@ public class CommandLineApp extends EnigmaMachine {
         }
     }
 
-    void plugInit() {
+    protected void plugInit() {
         System.out.println("====== Plugs ======");
         System.out.println("[1] Add More Plugs");
         System.out.println("[2] Clear Plugboard");
@@ -80,7 +88,7 @@ public class CommandLineApp extends EnigmaMachine {
                 break;
             case 2:
                 myPlugboard.clear();
-                System.out.println("[SUCCESS] Plugboard Cleared");
+                System.out.println("\n[SUCCESS] Plugboard Cleared\n");
                 plugInit();
                 break;
             case 3:
@@ -94,13 +102,13 @@ public class CommandLineApp extends EnigmaMachine {
                 init();
                 break;
             default:
-                System.err.println("[FAIL] Please enter a number from 1 - 4");
+                System.err.println("\n[FAIL] Please enter a number from 1 - 4\n");
                 plugInit();
                 break;
         }
     }
 
-    void addPlug() {
+    protected void addPlug() {
         System.out.println("What is the first end?");
         char end1 = charValidation(userInput.nextLine(), this::addPlug);
         System.out.println("What is the second end?");
@@ -119,7 +127,7 @@ public class CommandLineApp extends EnigmaMachine {
         plugInit();
     }
 
-    void rotorInit() {
+    protected void rotorInit() {
         System.out.println("====== Rotors ======");
         System.out.println("[1] Add Rotors");
         System.out.println("[2] Modify Rotors' Initial Position");
@@ -133,14 +141,29 @@ public class CommandLineApp extends EnigmaMachine {
                 selectRotorKind();
                 break;
             case 2:
-                setRotorPosition();
+                if (getRotor(0) != null) {
+                    setRotorPosition();
+                } else {
+                    System.err.println("\n[FAIL] Please add rotors first\n");
+                    rotorInit();
+                }
                 break;
             case 3:
-                setRotorType();
+                if (getRotor(0) != null) {
+                    setRotorType();
+                } else {
+                    System.err.println("\n[FAIL] Please add rotors first\n");
+                    rotorInit();
+                }
                 break;
             case 4:
-                showRotors();
-                rotorInit();
+                if (getRotor(0) != null) {
+                    showRotors();
+                    rotorInit();
+                } else {
+                    System.err.println("\n[FAIL] Please add rotors first\n");
+                    rotorInit();
+                }
                 break;
             case 5:
                 reflectorInit();
@@ -149,13 +172,13 @@ public class CommandLineApp extends EnigmaMachine {
                 init();
                 break;
             default:
-                System.err.println("[FAIL] Please enter a number from 1 - 5");
+                System.err.println("\n[FAIL] Please enter a number from 1 - 5\n");
                 rotorInit();
                 break;
         }
     }
 
-    void selectRotorKind() {
+    protected void selectRotorKind() {
         System.out.println("====== Rotor Kind ======");
         System.out.println("[1] Basic Rotor");
         System.out.println("[2] Turnover Rotor");
@@ -172,13 +195,13 @@ public class CommandLineApp extends EnigmaMachine {
                 rotorInit();
                 break;
             default:
-                System.err.println("[FAIL] Please enter either 1 or 2");
+                System.err.println("\n[FAIL] Please enter either 1 or 2\n");
                 selectRotorKind();
                 break;
         }
     }
 
-    String rotorConfig(int rotorNum) {
+    protected String rotorConfig(int rotorNum) {
         Function<Integer, Runnable> createRunnable = input -> new Runnable(){
             public void run() {
                 rotorConfig(input);
@@ -208,7 +231,7 @@ public class CommandLineApp extends EnigmaMachine {
                 output = "V";
                 break;
             default:
-                System.err.println("[FAIL] Please enter a number from 1 - 5");
+                System.err.println("\n[FAIL] Please enter a number from 1 - 5\n");
                 rotorConfig(rotorNum);
                 break;
         }
@@ -218,14 +241,14 @@ public class CommandLineApp extends EnigmaMachine {
         if (position < 26 && position >= 0) {
             output += " " + position + " " + rotorNum;
         } else {
-            System.err.println("[FAIL] Please enter a number from 0 to 25");
+            System.err.println("\n[FAIL] Please enter a number from 0 to 25\n");
             rotorConfig(rotorNum);
         }
 
         return output;
     }
 
-    void addBasicRotor(String config) {
+    protected void addBasicRotor(String config) {
         String rotorType = config.split(" ")[0];
         int rotorPosition = Integer.parseInt(config.split(" ")[1]);
         int rotorNum = Integer.parseInt(config.split(" ")[2]);
@@ -237,7 +260,7 @@ public class CommandLineApp extends EnigmaMachine {
         System.out.println("\n[SUCCESS] Rotor " + rotorNum + " is added \n");
     }
 
-    void addTurnoverRotor() {
+    protected void addTurnoverRotor() {
         String rotor1Config = rotorConfig(1);
         String rotor2Config = rotorConfig(2);
         String rotor3Config = rotorConfig(3);
@@ -256,7 +279,7 @@ public class CommandLineApp extends EnigmaMachine {
         System.out.println("\n[SUCCESS] All rotors are added!\n");
     }
 
-    void setRotorPosition() {
+    protected void setRotorPosition() {
         System.out.println("Which rotor would you like to change?");
         int rotorInput = (intValidation(userInput.nextLine(), this::setRotorPosition) - 1);
 
@@ -269,16 +292,16 @@ public class CommandLineApp extends EnigmaMachine {
                 System.out.println("\n[SUCCESS] Rotor " + (rotorInput + 1) + "'s initial position is now " + positionInput + "\n");
                 rotorInit();
             } else {
-                System.err.println("[FAIL] Please enter a number from 0 to 25");
+                System.err.println("\n[FAIL] Please enter a number from 0 to 25\n");
                 setRotorPosition();
             }
         } else {
-            System.err.println("[FAIL] Please enter a number from 1 to 3");
+            System.err.println("\n[FAIL] Please enter a number from 1 to 3\n");
             setRotorPosition();
         }
     }
 
-    void setRotorType() {
+    protected void setRotorType() {
         System.out.println("Which rotor would you like to change?");
         int rotorInput = (intValidation(userInput.nextLine(), this::setRotorPosition) - 1);
         int rotorPosition;
@@ -306,7 +329,7 @@ public class CommandLineApp extends EnigmaMachine {
                     rotorType = "V";
                     break;
                 default:
-                    System.err.println("[FAIL] Please enter a number from 1 - 5");
+                    System.err.println("\n[FAIL] Please enter a number from 1 - 5\n");
                     setRotorType();
                     break;
             }
@@ -326,37 +349,111 @@ public class CommandLineApp extends EnigmaMachine {
                 rotorInit();
             }
         } else {
-            System.err.println("[FAIL] Please enter a number from 1 to 3");
+            System.err.println("\n[FAIL] Please enter a number from 1 to 3\n");
             setRotorPosition();
         }
     }
 
-    void reflectorInit() {
+    protected void reflectorInit() {
         System.out.println("====== Reflector ======");
         System.out.println("[1] Add/Modify Reflector");
         System.out.println("[2] Show Current Reflector Type");
-        System.out.println("[3] Return to Main Menu");
+        System.out.println("[3] Run Enigma Machine");
+        System.out.println("[4] Return to Main Menu");
 
         switch (intValidation(userInput.nextLine(), this::reflectorInit)) {
             case 1:
                 addMyReflector();
                 break;
             case 2:
-                System.out.println(getReflector().name);
-                reflectorInit();
+                if (getReflector() != null) {
+                    System.out.println("\nYour current reflector is of type " + getReflector().name + "\n");
+                    reflectorInit();
+                } else {
+                    System.err.println("\n[FAIL] Please add the reflector first\n");
+                    reflectorInit();
+                }
                 break;
             case 3:
+                if (getReflector() != null && getRotor(0) != null) {
+                    encodeInit();
+                } else {
+                    System.err.println("\n[FAIL] Make sure you have added a reflector and the rotors before encoding\n");
+                    reflectorInit();
+                }
+                break;
+            case 4:
                 init();
+                break;
+            default:
+                System.err.println("\n[FAIL] Please enter a number from 1 - 3\n");
+                reflectorInit();
                 break;
         }
     }
 
-    void addMyReflector() {
+    protected void addMyReflector() {
+        System.out.println("What type of reflector would you like?");
+        String reflectorType = "";
 
+        switch (intValidation(userInput.nextLine(), this::addMyReflector)) {
+            case 1:
+                reflectorType = "I";
+                break;
+            case 2:
+                reflectorType = "II";
+                break;
+            default:
+                System.err.println("\n[FAIL] Please enter either 1 or 2\n");
+                addMyReflector();
+                break;
+        }
+
+        Reflector myReflector = new Reflector(reflectorType);
+        addReflector(myReflector);
+
+        System.out.println("\n[SUCCESS] Reflector type " + getReflector().name + " is added\n");
+
+        reflectorInit();
     }
 
-    void encode() {
-        System.out.println("Encode!");
+    protected void encodeInit() {
+        System.out.println("====== Encode Message ======");
+        System.out.println("[1] Encode");
+        System.out.println("[2] Return to Main Menu");
+
+        switch (intValidation(userInput.nextLine(), this::encodeInit)) {
+            case 1:
+                encode();
+                break;
+            case 2:
+                init();
+                break;
+            default:
+                System.err.println("\n[FAIL] Please enter either 1 or 2\n");
+                encodeInit();
+                break;
+        }
+    }
+
+    protected void encode() {
+        System.out.println("What is the message you would like to encode?");
+        char inputCharArray[] = userInput.nextLine().toCharArray();
+        StringBuilder output = new StringBuilder("");
+
+        if (getRotor(0) instanceof TurnoverRotor) {
+            for(char letter: inputCharArray) {
+                output.append(encodeLetter(letter));
+                ((TurnoverRotor) getRotor(0)).rotateTurnover();
+            }
+        } else {
+            for(char letter: inputCharArray) {
+                output.append(encodeLetter(letter));
+            }
+        }
+
+        System.out.println("\n[SUCCESS] Your output is " + output + "\n");
+        encodeInit();
     }
 
     public static void main(String[] args) {
