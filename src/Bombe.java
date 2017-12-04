@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.*;
+
 public class Bombe extends EnigmaMachine {
     private String outputString(String msg) {
         char charArray[] = msg.toCharArray();
@@ -10,7 +14,7 @@ public class Bombe extends EnigmaMachine {
         return output;
     }
 
-    private void test1() {
+    private void plugTest() {
         char alphabet[] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
         String msg = "JBZAQVEBRPEVPUOBXFLCPJQSYFJI";
 
@@ -49,7 +53,7 @@ public class Bombe extends EnigmaMachine {
         clearPlugboard();
     }
 
-    private void test2() {
+    private void rotorPositionTest() {
         String msg = "AVPBLOGHFRLTFELQEZQINUAXHTJMXDWERTTCHLZTGBFUPORNHZSLGZMJNEINTBSTBPPQFPMLSVKPETWFD";
 
         myPlugboard.addPlug('H', 'L');
@@ -90,7 +94,7 @@ public class Bombe extends EnigmaMachine {
         clearPlugboard();
     }
 
-    private void test3() {
+    private void rotorTypeTest() {
         String types[] = {"I", "II", "III", "IV", "V"};
         String msg = "WMTIOMNXDKUCQCGLNOIBUYLHSFQSVIWYQCLRAAKZNJBOYWW";
 
@@ -132,9 +136,67 @@ public class Bombe extends EnigmaMachine {
         clearPlugboard();
     }
 
+    private void enhancedPlugTest() {
+        char alphabet[] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
+        String msg = "JBZAQVEBRPEVPUOBXFLCPJQSYFJI";
+
+        BasicRotor rotor1 = new BasicRotor("IV");
+        rotor1.setPosition(8);
+        BasicRotor rotor2 = new BasicRotor("III");
+        rotor2.setPosition(4);
+        BasicRotor rotor3 = new BasicRotor("II");
+        rotor3.setPosition(21);
+
+        addRotor(rotor1, 0);
+        addRotor(rotor2, 1);
+        addRotor(rotor3, 2);
+
+        Reflector myReflector = new Reflector("I");
+        addReflector(myReflector);
+
+        HashSet<String> words = new HashSet<>();
+
+        try {
+            Scanner longWordFile = new Scanner(new File("long-words.txt"));
+
+            while (longWordFile.hasNext()) {
+                words.add(longWordFile.next().trim().toUpperCase());
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println(e);
+        }
+
+        try {
+            Scanner shortWordFile = new Scanner(new File("med-words.txt"));
+
+            while (shortWordFile.hasNext()) {
+                words.add(shortWordFile.next().trim().toUpperCase());
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println(e);
+        }
+
+        for (char firstPlug : alphabet) {
+            myPlugboard.addPlug('D', firstPlug);
+
+            for (char secondPlug : alphabet) {
+                myPlugboard.addPlug('S', secondPlug);
+                String temp = outputString(msg);
+                for (String myWord : words) {
+                    if (temp.contains(myWord)) {
+                        System.out.println(temp);
+                        System.out.println("The first missing plug is " + firstPlug);
+                        System.out.println("The second missing plug is " + secondPlug);
+                    } else {
+                        myPlugboard.clear();
+                        myPlugboard.addPlug('D', firstPlug);
+                    }
+                }
+            }
+        }
+    }
+
     public static void main(String[] args) {
         Bombe myBombe = new Bombe();
-
-        myBombe.test3();
     }
 }

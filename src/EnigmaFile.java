@@ -2,7 +2,6 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class EnigmaFile {
-
     private static ArrayList<String> readFile(String fileName) {
         ArrayList<String> myMsgs = new ArrayList<>();
         try {
