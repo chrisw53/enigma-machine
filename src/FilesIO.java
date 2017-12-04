@@ -1,13 +1,25 @@
 import java.io.*;
 import java.util.ArrayList;
 
-public class EnigmaFile {
-    private static ArrayList<String> readFile(String fileName) {
+
+public class FilesIO {
+    /**
+     * This method reads text from file line by line, and output them
+     * into an string array list.
+     * @param fileName This is the file path for the input file
+     * @return A string array list where each element is a line of text
+     * from the input file.
+     */
+    protected static ArrayList<String> readFile(String fileName) {
         ArrayList<String> myMsgs = new ArrayList<>();
         try {
             BufferedReader getMsg = new BufferedReader(new FileReader(fileName));
             String msg = getMsg.readLine();
 
+            /*
+            This while loop continues to add lines of text into the
+            array list until every line is read.
+              */
             while (msg != null) {
                 myMsgs.add(msg);
                 msg = getMsg.readLine();
@@ -23,7 +35,13 @@ public class EnigmaFile {
         return myMsgs;
     }
 
-    private static String encode(ArrayList<String> inputs) {
+    /**
+     * This method handles creating a new enigma machine and encoding
+     * the array list of strings.
+     * @param inputs An array list of strings to be encoded
+     * @return A string containing the encoded message
+     */
+    protected static String encode(ArrayList<String> inputs) {
         EnigmaMachine myEnigmaMachine = new EnigmaMachine();
 
         myEnigmaMachine.myPlugboard.addPlug('A', 'M');
@@ -44,26 +62,33 @@ public class EnigmaFile {
         Reflector myReflector = new Reflector("I");
         myEnigmaMachine.addReflector(myReflector);
 
-        String output = "";
+        StringBuilder output = new StringBuilder();
         for (int i = 0; i < inputs.size(); i++) {
             char charArray[] = inputs.get(i).toCharArray();
             if (i > 0) {
-                output += "\n";
+                output.append("\n");
             }
 
             for(char letter: charArray) {
                 if (letter >= 65 && letter <= 90) {
-                    output += myEnigmaMachine.encodeLetter(letter);
+                    output.append(myEnigmaMachine.encodeLetter(letter));
                 }
             }
         }
 
-        return output;
+        return output.toString();
     }
 
-    private static void writeFile(String content) {
+    /**
+     * This writes the input string to the file path specified in the
+     * parameter.
+     * @param content A string with content to be written to.
+     * @param fileName A string with the file path to the file to be
+     *                 written to.
+     */
+    protected static void writeFile(String content, String fileName) {
         try {
-            PrintWriter writer = new PrintWriter("secured.txt", "UTF-8");
+            PrintWriter writer = new PrintWriter(fileName, "UTF-8");
             writer.println(content);
             writer.close();
         } catch (IOException e) {
@@ -72,6 +97,6 @@ public class EnigmaFile {
     }
 
     public static void main(String[] args) {
-        writeFile(encode(readFile("unsecured.txt")));
+        writeFile(encode(readFile("unsecured.txt")), "secured.txt");
     }
 }

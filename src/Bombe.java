@@ -3,17 +3,33 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 public class Bombe extends EnigmaMachine {
+    /**
+     * This method handles breaking down the message to be encoded into
+     * a char array, encode each character and put them together into a
+     * string to output.
+     * @param msg The input string to be encoded
+     * @return An encoded string.
+     */
     private String outputString(String msg) {
         char charArray[] = msg.toCharArray();
-        String output = "";
+        StringBuilder output = new StringBuilder();
 
         for(char letter: charArray) {
-            output += (encodeLetter(letter));
+            output.append(encodeLetter(letter));
         }
 
-        return output;
+        return output.toString();
     }
 
+    /**
+     * This is a bombe test with basic rotors and missing plugs. The bombe
+     * cycles through each possibility until one hits the keyword "ANSWER",
+     * it then outputs the output along with missing plugs. Lastly, it clears
+     * the plugboard to ready it if other tests follow
+     *
+     * There are quite a few outputs with the keyword answer in them, I think
+     * the correct output in this test is DAISYDAISYGIVEMEYOURANSWERDO.
+     */
     private void plugTest() {
         char alphabet[] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
         String msg = "JBZAQVEBRPEVPUOBXFLCPJQSYFJI";
@@ -53,6 +69,16 @@ public class Bombe extends EnigmaMachine {
         clearPlugboard();
     }
 
+    /**
+     * This is a bombe test with missing rotor positions. Similarly to the
+     * test above, the bombe cycles through all the possibilities for the rotor
+     * position until it hits one with the keyword "ELECTRIC". It then prints
+     * out the output as well as the missing positions. Lastly, the plugboard
+     * is cleared in case there are any other tests following.
+     *
+     * The correct output for this test is
+     * WELLALWAYSBETOGETHERHOWEVERFARITSEEMSWELLALWAYSBETOGETHERTOGETHERINELECTRICDREAMS
+     */
     private void rotorPositionTest() {
         String msg = "AVPBLOGHFRLTFELQEZQINUAXHTJMXDWERTTCHLZTGBFUPORNHZSLGZMJNEINTBSTBPPQFPMLSVKPETWFD";
 
@@ -94,6 +120,18 @@ public class Bombe extends EnigmaMachine {
         clearPlugboard();
     }
 
+    /**
+     * This is a bombe test with missing rotor types. Similarly to the
+     * test above, the bombe cycles through all the possibilities for the rotor
+     * types until it hits one with the keyword "JAVA". It then prints
+     * out the output as well as the missing positions. Lastly, the plugboard
+     * is cleared in case there are any other tests following. This differs from
+     * the tests above because it has to reset the rotor1 and rotor2 position each
+     * run in order to get the correct answer.
+     *
+     * The correct output for this test is ILOVECOFFEEILOVETEAILOVETHEJAVAJIVEANDITLOVESME.
+     *
+     */
     private void rotorTypeTest() {
         String types[] = {"I", "II", "III", "IV", "V"};
         String msg = "WMTIOMNXDKUCQCGLNOIBUYLHSFQSVIWYQCLRAAKZNJBOYWW";
@@ -136,6 +174,14 @@ public class Bombe extends EnigmaMachine {
         clearPlugboard();
     }
 
+    /**
+     * This is an extension done on the plug test. While keeping the main mechanisms
+     * the same, this bombe test read in two files of the 10000 most common words in
+     * the english language compiled by google, and stores all of them in a hashset.
+     * It then uses this to check the different outputs. This is less efficient than
+     * the single keyword approach, as words such as "give" and "your" will all trigger
+     * the output being labeled as the right one as well as answer.
+     */
     private void enhancedPlugTest() {
         char alphabet[] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
         String msg = "JBZAQVEBRPEVPUOBXFLCPJQSYFJI";
@@ -159,6 +205,7 @@ public class Bombe extends EnigmaMachine {
         try {
             Scanner longWordFile = new Scanner(new File("long-words.txt"));
 
+            // Reads in each word line by line and add it to the hashset
             while (longWordFile.hasNext()) {
                 words.add(longWordFile.next().trim().toUpperCase());
             }
@@ -169,6 +216,7 @@ public class Bombe extends EnigmaMachine {
         try {
             Scanner shortWordFile = new Scanner(new File("med-words.txt"));
 
+            // Reads in each word line by line and add it to the hashset
             while (shortWordFile.hasNext()) {
                 words.add(shortWordFile.next().trim().toUpperCase());
             }
@@ -198,5 +246,10 @@ public class Bombe extends EnigmaMachine {
 
     public static void main(String[] args) {
         Bombe myBombe = new Bombe();
+
+        //myBombe.plugTest();
+        //myBombe.rotorPositionTest();
+        //myBombe.rotorTypeTest();
+        //myBombe.enhancedPlugTest();
     }
 }
